@@ -648,7 +648,9 @@ pub(crate) mod tests {
     }
 
     fn test_filesystem_ilookup1(sbi: &mut SimpleBufferedFileSystem) {
-        const LIPSUM_HEX: [u8;64] = hex!("6846740fd4c03c86524d39e0012ec8eb1e4b87e8a90c65227904148bc0e4d0592c209151a736946133cd57f7ec59c4e8a445e7732322dda9ce356f8d0100c4ca");
+        const LIPSUM_HEX: [u8; 64] = hex!(
+            "6846740fd4c03c86524d39e0012ec8eb1e4b87e8a90c65227904148bc0e4d0592c209151a736946133cd57f7ec59c4e8a445e7732322dda9ce356f8d0100c4ca"
+        );
         const LIPSUM_FILE_SIZE: u64 = 5060;
         const LIPSUM_TYPE: Type = Type::Regular;
         let inode = lookup(
@@ -670,7 +672,9 @@ pub(crate) mod tests {
     }
 
     fn test_filesystem_ilookup2(sbi: &mut SimpleBufferedFileSystem) {
-        const IMAGE_HEX: [u8;64] = hex!("2d0f63b3ca997d30d65f70f32bf97038d92d1f4e642fe48ede697ab73e936e5b2bff9b556a786340d9385993b2e7f6744cbbf8b4660c55b33c907a3a2ced33b5");
+        const IMAGE_HEX: [u8; 64] = hex!(
+            "2d0f63b3ca997d30d65f70f32bf97038d92d1f4e642fe48ede697ab73e936e5b2bff9b556a786340d9385993b2e7f6744cbbf8b4660c55b33c907a3a2ced33b5"
+        );
         const IMAGE_FILE_SIZE: u64 = 13735;
         const IMAGE_TYPE: Type = Type::Regular;
 
@@ -691,7 +695,9 @@ pub(crate) mod tests {
         assert_eq!(result[..], IMAGE_HEX);
     }
     fn test_continous_iter(sbi: &mut SimpleBufferedFileSystem) {
-        const README_CHECKSUM: [u8; 64] = hex!("99fffc75aec028f417d9782fffed6c5d877a29ad1b16fc62bfeb168cdaf8db6db2bad1814904cd0fa18a2396c2c618041682a010601f4052b9895138d4ed6f16");
+        const README_CHECKSUM: [u8; 64] = hex!(
+            "99fffc75aec028f417d9782fffed6c5d877a29ad1b16fc62bfeb168cdaf8db6db2bad1814904cd0fa18a2396c2c618041682a010601f4052b9895138d4ed6f16"
+        );
         const README_FILE_SIZE: u64 = 38;
         const README_TYPE: Type = Type::Regular;
         let inode = lookup(
@@ -753,16 +759,18 @@ pub(crate) mod tests {
         }
 
         {
-            assert!(sbi
-                .filesystem
-                .get_xattr(inode, 6, b"selinux", &mut Some(&mut [0u8; 128]))
-                .is_ok())
+            assert!(
+                sbi.filesystem
+                    .get_xattr(inode, 6, b"selinux", &mut Some(&mut [0u8; 128]))
+                    .is_ok()
+            )
         }
 
-        assert!(sbi
-            .filesystem
-            .get_xattr(inode, 2, b"", &mut None)
-            .is_err_and(|x| x == Errno::ENODATA));
+        assert!(
+            sbi.filesystem
+                .get_xattr(inode, 2, b"", &mut None)
+                .is_err_and(|x| x == Errno::ENODATA)
+        );
     }
 
     fn test_get_dir_xattr(sbi: &mut SimpleBufferedFileSystem) {
@@ -773,10 +781,11 @@ pub(crate) mod tests {
             "/",
         )
         .unwrap();
-        assert!(sbi
-            .filesystem
-            .get_xattr(inode, 2, b"", &mut None)
-            .is_err_and(|x| x == Errno::ENODATA));
+        assert!(
+            sbi.filesystem
+                .get_xattr(inode, 2, b"", &mut None)
+                .is_err_and(|x| x == Errno::ENODATA)
+        );
     }
 
     fn test_list_xattr(sbi: &mut SimpleBufferedFileSystem) {
@@ -816,10 +825,11 @@ pub(crate) mod tests {
             "/noxattr.txt",
         )
         .unwrap();
-        assert!(sbi
-            .filesystem
-            .get_xattr(inode, 2, b"", &mut None)
-            .is_err_and(|x| x == Errno::ENODATA));
+        assert!(
+            sbi.filesystem
+                .get_xattr(inode, 2, b"", &mut None)
+                .is_err_and(|x| x == Errno::ENODATA)
+        );
     }
 
     pub(crate) fn test_filesystem(sbi: &mut SimpleBufferedFileSystem, xattrs_enabled: bool) {

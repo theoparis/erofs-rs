@@ -1,4 +1,4 @@
-use clap::{arg, Parser};
+use clap::{Parser, arg};
 use erofs_sys::data::backends::uncompressed::UncompressedBackend;
 use erofs_sys::data::*;
 use erofs_sys::errnos::Errno::*;
@@ -12,9 +12,9 @@ use erofs_sys::{Nid, Off, PosixResult};
 use fuser::Filesystem as FuseFileSystem;
 use fuser::MountOption;
 use fuser::{
-    FileAttr, FileType, ReplyAttr, ReplyData, ReplyDirectory, ReplyEntry, Request, FUSE_ROOT_ID,
+    FUSE_ROOT_ID, FileAttr, FileType, ReplyAttr, ReplyData, ReplyDirectory, ReplyEntry, Request,
 };
-use std::collections::{hash_map::Entry, HashMap};
+use std::collections::{HashMap, hash_map::Entry};
 use std::ffi::OsStr;
 use std::ffi::*;
 use std::fs::File;

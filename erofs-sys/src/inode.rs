@@ -461,7 +461,7 @@ pub trait InodeCollection {
 
     /// get the inode based on nid and filesystem
     fn iget(&mut self, nid: Nid, filesystem: &dyn FileSystem<Self::I>)
-        -> PosixResult<&mut Self::I>;
+    -> PosixResult<&mut Self::I>;
     /// release inode
     fn release(&mut self, nid: Nid);
 }
@@ -471,7 +471,7 @@ pub(crate) mod tests {
 
     extern crate std;
     use super::*;
-    use std::collections::{hash_map::Entry, HashMap};
+    use std::collections::{HashMap, hash_map::Entry};
 
     #[test]
     fn test_inode_size() {

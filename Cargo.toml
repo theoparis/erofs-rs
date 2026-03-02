@@ -1,6 +1,7 @@
 [workspace]
 resolver = "3"
-members = [ "dump","erofs-sys", "fuse", "mkfs"]
+default-members = ["erofs-sys", "dump", "mkfs"]
+members = [ "dump", "erofs-sys", "fuse", "mkfs"]
 
 # The following is copyed from the rust-for-linux project Makefile
 [workspace.lints.rust]

@@ -45,7 +45,7 @@ where
             continue;
         }
         let inode = read_inode(filesystem, collection, nid)?; // this part collection is reborrowed for shorter
-                                                              // lifetime inside the loop;
+        // lifetime inside the loop;
         match filesystem.find_nid(inode, part)? {
             Some(n) => {
                 nid = n;
