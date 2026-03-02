@@ -11,3 +11,6 @@ clap = { version = "4", features = ["derive", "cargo"] }
 [features]
 default = []
 libfuse = ["fuser/libfuse"]
+
+[lints]
+workspace = true
