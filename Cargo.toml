@@ -1,3 +1,28 @@
 [workspace]
 resolver = "3"
 members = [ "dump","erofs-sys", "fuse", "mkfs"]
+
+# The following is copyed from the rust-for-linux project Makefile
+[workspace.lints.rust]
+unsafe_op_in_unsafe_fn = "deny"
+rust_2018_idioms = "deny"
+unreachable_pub = "deny"
+non_ascii_idents = "deny"
+missing_docs = "deny"
+unexpected_cfgs = { level = "allow", check-cfg = ['cfg(CONFIG_EROFS_FS, values("y"))'] }
+
+[workspace.lints.rustdoc]
+missing_crate_level_docs = "warn"
+
+[workspace.lints.clippy]
+correctness = "deny"
+style = "deny"
+suspicious = "deny"
+complexity = "deny"
+perf = "deny"
+let_unit_value = "deny"
+mut_mut = "deny"
+needless_bitwise_bool = "deny"
+needless_continue = "deny"
+no_mangle_with_rust_abi = "deny"
+dbg_macro = "deny"
