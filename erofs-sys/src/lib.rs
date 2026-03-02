@@ -47,7 +47,7 @@ pub type PosixResult<T> = Result<T, errnos::Errno>;
 #[macro_export]
 macro_rules! round {
     (UP, $x: expr, $y: expr) => {
-        ($x + $y - 1) / $y * $y
+        ($x + $y).div_ceil($y)
     };
     (DOWN, $x: expr, $y: expr) => {
         ($x / $y) * $y

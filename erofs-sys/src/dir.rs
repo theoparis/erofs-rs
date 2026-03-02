@@ -91,9 +91,8 @@ impl<'a> DirCollection<'a> {
 impl<'a> Iterator for DirCollection<'a> {
     type Item = Dirent<'a>;
     fn next(&mut self) -> Option<Self::Item> {
-        self.dirent(self.offset).map(|x| {
+        self.dirent(self.offset).inspect(|_| {
             self.offset += 1;
-            x
         })
     }
 }
